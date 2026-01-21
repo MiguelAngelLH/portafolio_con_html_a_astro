@@ -1,0 +1,3 @@
+# Evitar respaldos de repos anidados (accidentales)
+**/.git.bak/
+
