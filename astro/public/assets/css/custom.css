@@ -1,0 +1,71 @@
+/* Pequeños ajustes visuales sin romper el template HTML5UP */
+
+:root {
+	--accent: #6ea8fe;
+	--card-bg: rgba(255, 255, 255, 0.04);
+	--card-border: rgba(255, 255, 255, 0.12);
+	--card-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* Mejor lectura del snippet */
+pre code {
+	display: block;
+	padding: 1.25rem;
+	border-radius: 0.75rem;
+	background: rgba(0, 0, 0, 0.25);
+	border: 1px solid rgba(255, 255, 255, 0.12);
+	overflow-x: auto;
+}
+
+/* Tarjetas de proyectos más "card" */
+#proyectos .box.alt > .row > section {
+	background: var(--card-bg);
+	border: 1px solid var(--card-border);
+	border-radius: 1rem;
+	box-shadow: var(--card-shadow);
+	padding: 1.25rem;
+	transition: transform 180ms ease, border-color 180ms ease;
+}
+
+#proyectos .box.alt > .row > section:hover {
+	transform: translateY(-4px);
+	border-color: rgba(110, 168, 254, 0.45);
+}
+
+#proyectos .image.fit img {
+	border-radius: 0.75rem;
+}
+
+/* Chips de tecnologías con ícono */
+.tech-grid {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+	justify-content: center;
+	margin: 1.25rem 0 0;
+}
+
+.tech-chip {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.6rem;
+	padding: 0.65rem 0.9rem;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.06);
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22);
+	user-select: none;
+}
+
+.tech-chip .icon {
+	opacity: 0.95;
+}
+
+.tech-chip strong {
+	font-weight: 600;
+}
+
+/* Ajuste de imágenes grandes para que no saturen */
+.spotlight .image.fit.main img {
+	filter: saturate(1.02) contrast(1.02);
+}
