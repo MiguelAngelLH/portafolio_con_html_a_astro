@@ -1,13 +1,14 @@
 ---
 import Html5UpLayout from '../layouts/Html5UpLayout.astro';
+import { buildPageTitle, PAGE_TITLES, SITE_BRAND, SITE_OWNER_NAME } from '../consts';
 ---
 
-<Html5UpLayout>
+<Html5UpLayout title={buildPageTitle(PAGE_TITLES.home)}>
 	<div id="page-wrapper">
 
 		<!-- Header -->
 		<header id="header">
-			<h1 id="logo"><a href="/">Miguel Ángel</a></h1>
+			<h1 id="logo"><a href="/">{SITE_BRAND}</a></h1>
 			<nav id="nav">
 				<ul>
 					<li><a href="#banner">Inicio</a></li>
@@ -23,7 +24,7 @@ import Html5UpLayout from '../layouts/Html5UpLayout.astro';
 		<section id="banner">
 			<div class="content">
 				<header>
-					<h2>¡Hola! Soy Miguel Ángel López Hernández</h2>
+					<h2>¡Hola! Soy {SITE_OWNER_NAME}</h2>
 					<p>
 						🚀 Desarrollador Full Stack &amp; IoT<br />
 						Ingeniero en Desarrollo y Gestión de Software

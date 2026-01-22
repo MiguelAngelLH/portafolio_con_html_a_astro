@@ -1,4 +1,6 @@
 ---
+import { buildPageTitle, PAGE_TITLES, SITE_DESCRIPTION } from '../consts';
+
 interface Props {
 	title?: string;
 	description?: string;
@@ -6,8 +8,8 @@ interface Props {
 }
 
 const {
-	title = 'Miguel Ángel López Hernández | Portafolio',
-	description = 'Portafolio de Miguel Ángel López Hernández — Desarrollador Full Stack & IoT. Proyectos, habilidades y contacto.',
+	title = buildPageTitle(PAGE_TITLES.home),
+	description = SITE_DESCRIPTION,
 	bodyClass = 'is-preload landing',
 } = Astro.props;
 ---
@@ -35,5 +37,26 @@ const {
 		<script src="/assets/js/breakpoints.min.js" is:inline></script>
 		<script src="/assets/js/util.js" is:inline></script>
 		<script src="/assets/js/main.js" is:inline></script>
+		<script is:inline>
+			(function () {
+				function triggerScroll() {
+					try {
+						if (window.jQuery) window.jQuery(window).trigger('scroll');
+						else window.dispatchEvent(new Event('scroll'));
+					} catch (_) {
+						// no-op
+					}
+				}
+
+				// Al cargar directo en /#seccion, o al cambiar el hash, fuerza a scrollex a recalcular.
+				window.addEventListener('load', function () {
+					setTimeout(triggerScroll, 0);
+					setTimeout(triggerScroll, 200);
+				});
+				window.addEventListener('hashchange', function () {
+					setTimeout(triggerScroll, 0);
+				});
+			})();
+		</script>
 	</body>
 </html>

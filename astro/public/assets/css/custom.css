@@ -36,6 +36,12 @@ pre code {
 	border-radius: 0.75rem;
 }
 
+/* Reglas base: imágenes responsivas sin desbordes */
+img {
+	max-width: 100%;
+	height: auto;
+}
+
 /* Chips de tecnologías con ícono */
 .tech-grid {
 	display: flex;
@@ -66,6 +72,99 @@ pre code {
 }
 
 /* Ajuste de imágenes grandes para que no saturen */
-.spotlight .image.fit.main img {
+.spotlight .image.fit.main,
+.spotlight .image.fit.main.bottom {
+	/* Alto consistente; la imagen se adapta sin recortarse */
+	height: clamp(220px, 40vw, 540px);
+}
+
+.spotlight .image.fit.main img,
+.spotlight .image.fit.main.bottom img {
 	filter: saturate(1.02) contrast(1.02);
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	background: rgba(0, 0, 0, 0.15);
+}
+
+/* Spotlights (desktop): HTML5UP usa la imagen como background y por defecto la recorta (cover).
+   Cambiamos a contain + posiciones laterales para ver la imagen completa. */
+.spotlight {
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+	/* Evita que la sección sea excesivamente alta en desktop */
+	height: clamp(520px, 85vh, 820px);
+}
+
+.spotlight.right {
+	background-position: left center;
+}
+
+.spotlight.left {
+	background-position: right center;
+}
+
+/* En <=980px, la imagen se muestra como <img>; evitar recortes por overflow + max-height */
+@media (max-width: 980px) {
+	.spotlight .image.main {
+		overflow: hidden;
+	}
+	.spotlight .image.main img {
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		background: rgba(0, 0, 0, 0.15);
+	}
+}
+
+/* Foto del banner: que no domine toda la pantalla */
+#banner .content .image img {
+	width: 100%;
+	max-width: 320px;
+	height: auto;
+	border-radius: 1rem;
+	object-fit: cover;
+	box-shadow: var(--card-shadow);
+}
+
+/* Cards de proyectos: tamaño consistente */
+#proyectos .image.fit img {
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	object-fit: contain;
+	background: rgba(0, 0, 0, 0.18);
+}
+
+@media (max-width: 736px) {
+	.spotlight .image.fit.main,
+	.spotlight .image.fit.main.bottom {
+		height: clamp(200px, 55vw, 320px);
+	}
+	#banner .content .image img {
+		max-width: 220px;
+	}
+}
+
+/* Animaciones: más suaves y sin “tirones” */
+html {
+	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	html {
+		scroll-behavior: auto;
+	}
+	* {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		transition-duration: 0.01ms !important;
+	}
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	#proyectos .box.alt > .row > section,
+	.spotlight {
+		will-change: transform;
+	}
 }
